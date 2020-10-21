@@ -70,9 +70,9 @@ void display()
 
 void processNormalKeys(unsigned char key, int x, int y)
 {
-	if (key == 27)
+	if (key == 27) // Esc
 		exit(0);
-	if (key == 65)
+	if (key == 65) // 'A'
 	{
 		glMatrixMode(GL_MODELVIEW);
 		glTranslated(20, 20, 0);
@@ -81,26 +81,22 @@ void processNormalKeys(unsigned char key, int x, int y)
 }
 
 void processSpecialKeys(int key, int x, int y) {
+	glMatrixMode(GL_MODELVIEW);
+
 	switch (key) {
 	case GLUT_KEY_UP:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(0, 20, 0);
-		display();
 		break;
 	case GLUT_KEY_DOWN:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(0, -20, 0);
-		display();
 		break;
 	case GLUT_KEY_LEFT:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(-20, 0, 0);
-		display();
 		break;
 	case GLUT_KEY_RIGHT:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(20, 0, 0);
-		display();
 		break;
 	}
+
+	display();
 }

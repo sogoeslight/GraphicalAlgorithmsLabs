@@ -12,15 +12,10 @@ struct Point {
 	float y;
 };
 
-vector <Point> pointVector;
+vector <Point> points;
 vector <int> code;
 
 Point currentPoint;
-
-GLdouble planeX = -1;
-GLdouble planeY = 1;
-GLdouble planeZ = 0;
-GLdouble planeD = 0;
 
 void readFromFile(string path);
 void reshape(int w, int h);
@@ -51,7 +46,7 @@ void reshape(int w, int h) {
 void readFromFile(string path)
 {
 	fstream f(path, ios::in);
-	if (pointVector.empty())
+	if (points.empty())
 	{
 		int pointNumber;
 		Point p;
@@ -59,7 +54,7 @@ void readFromFile(string path)
 		for (int i = 0; i < pointNumber; i++)
 		{
 			f >> p.x >> p.y;
-			pointVector.push_back(p);
+			points.push_back(p);
 		}
 		int movesNumber, m;
 		f >> movesNumber;
@@ -77,15 +72,15 @@ void moveTo(int pos)
 {
 	pos = abs(pos) - 1;
 
-	currentPoint.x = pointVector[pos].x;
-	currentPoint.y = pointVector[pos].y;
+	currentPoint.x = points[pos].x;
+	currentPoint.y = points[pos].y;
 }
 
 void lineTo(int pos)
 {
 	pos = abs(pos) - 1;
 
-	Point p = pointVector[pos];
+	Point p = points[pos];
 
 	glBegin(GL_LINES);
 	glColor3d(0, 0, 0);
@@ -104,9 +99,14 @@ void draw(string fileName) {
 		code[i] < 0 ? moveTo((code[i])) : lineTo((code[i]));
 	}
 
-	pointVector.clear();
+	points.clear();
 	code.clear();
 }
+
+GLdouble X = -1;
+GLdouble Y = 1;
+GLdouble Z = 0;
+GLdouble D = 0;
 
 void display() {
 	glClearColor(1, 1, 1, 0);
@@ -114,13 +114,13 @@ void display() {
 
 	glEnable(GL_CLIP_PLANE0);
 
-	GLdouble arr[4] = { planeX, planeY, planeZ, planeD };
+	GLdouble arr[4] = { X, Y, Z, D };
 	glClipPlane(GL_CLIP_PLANE0, arr);
 	glColor3d(0, 0, 0);
 
 	glBegin(GL_LINES);
-	glVertex2i(0, -1 * planeD / planeY);
-	glVertex2i(100, -1 * (planeD + 100 * planeX) / planeY);
+	glVertex2i(0, -1 * D / Y);
+	glVertex2i(100, -1 * (D + 100 * X) / Y);
 	glEnd();
 
 	draw("i.txt");

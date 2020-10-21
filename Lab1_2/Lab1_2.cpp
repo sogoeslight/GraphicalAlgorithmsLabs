@@ -13,6 +13,8 @@ struct Point
 };
 
 vector <Point> points;
+Point currentPoint;
+vector <int> code;
 
 void display();
 void readFromFile(string path);
@@ -20,10 +22,6 @@ void reshape(int w, int h);
 void lineTo(int pos);
 void moveTo(int pos);
 void draw(string fileName);
-
-vector <Point> pointVector2;
-Point currentPoint;
-vector <int> code;
 
 int main(int argc, char* argv[])
 {
@@ -70,7 +68,7 @@ void draw(string fileName)
 		code[i] < 0 ? moveTo((code[i])) : lineTo((code[i]));
 	}
 
-	pointVector2.clear();
+	points.clear();
 	code.clear();
 }
 
@@ -83,7 +81,7 @@ void readFromFile(string path)
 	for (int i = 0; i < pointNumber; i++) // read all points
 	{
 		f >> p.x >> p.y;
-		pointVector2.push_back(p);
+		points.push_back(p);
 	}
 	int movesNumber, m;
 	f >> movesNumber; // amount of moves
@@ -98,15 +96,15 @@ void moveTo(int pos)
 {
 	pos = abs(pos) - 1;
 
-	currentPoint.x = pointVector2[pos].x;
-	currentPoint.y = pointVector2[pos].y;
+	currentPoint.x = points[pos].x;
+	currentPoint.y = points[pos].y;
 }
 
 void lineTo(int pos)
 {
 	pos = abs(pos) - 1;
 
-	Point p = pointVector2[pos];
+	Point p = points[pos];
 
 	glBegin(GL_LINES);
 	glColor3d(0, 0, 0);

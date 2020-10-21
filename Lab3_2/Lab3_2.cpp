@@ -25,8 +25,6 @@ void display();
 void processNormalKeys(unsigned char key, int x, int y);
 void processSpecialKeys(int key, int x, int y);
 
-int windowH, windowW;
-
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -71,19 +69,19 @@ void processNormalKeys(unsigned char key, int x, int y)
 {
 	if (key == 27) // Esc
 		exit(0);
-	if (key == 65) // A
+	if (key == 65) // 'A'
 	{
 		glMatrixMode(GL_MODELVIEW);
 		glTranslated(20, 20, 0);
 		display();
 	}
-	if (key == 45) // -
+	if (key == 45) // '-'
 	{
 		glMatrixMode(GL_MODELVIEW);
 		glScalef(0.8, 0.8, 0.0);
 		display();
 	}
-	if (key == 43) // +
+	if (key == 43) // '+'
 	{
 		glMatrixMode(GL_MODELVIEW);
 		glScalef(1.2, 1.2, 0.0);
@@ -92,38 +90,30 @@ void processNormalKeys(unsigned char key, int x, int y)
 }
 
 void processSpecialKeys(int key, int x, int y) {
+	glMatrixMode(GL_MODELVIEW);
+
 	switch (key) {
 	case GLUT_KEY_UP:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(0, 20, 0);
-		display();
 		break;
 	case GLUT_KEY_DOWN:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(0, -20, 0);
-		display();
 		break;
 	case GLUT_KEY_LEFT:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(-20, 0, 0);
-		display();
 		break;
 	case GLUT_KEY_RIGHT:
-		glMatrixMode(GL_MODELVIEW);
 		glTranslated(20, 0, 0);
-		display();
 		break;
 	case GLUT_KEY_HOME:
-		glMatrixMode(GL_MODELVIEW);
 		glRotatef(1, 0.0, 0.0, 1.0);
-		display();
 		break;
 	case GLUT_KEY_END:
-		glMatrixMode(GL_MODELVIEW);
 		glRotatef(-1, 0.0, 0.0, 1.0);
-		display();
 		break;
 	}
+
+	display();
 }
 
 void draw(string fileName)

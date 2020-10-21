@@ -14,7 +14,7 @@ struct Point {
 	float z;
 };
 
-vector <Point> pointVector;
+vector <Point> points;
 vector <int> code;
 Point currentPoint;
 
@@ -51,14 +51,14 @@ void readFromFile(string path)
 {
 	fstream f(path, ios::in);
 	if (f.is_open()) {
-		if (pointVector.empty()) {
+		if (points.empty()) {
 			int pointNumber;
 			Point p;
 			f >> pointNumber;
 			for (int i = 0; i < pointNumber; i++)
 			{
 				f >> p.x >> p.y >> p.z;
-				pointVector.push_back(p);
+				points.push_back(p);
 			}
 
 			int movesNumber, m;
@@ -70,14 +70,14 @@ void readFromFile(string path)
 			}
 		}
 		else {
-			int shiftForDots = pointVector.size();
+			int shiftForDots = points.size();
 			int pointNumber;
 			Point p;
 			f >> pointNumber;
 			for (int i = 0; i < pointNumber; i++)
 			{
 				f >> p.x >> p.y >> p.z;
-				pointVector.push_back(p);
+				points.push_back(p);
 			}
 
 			int movesNumber, m;
@@ -97,13 +97,13 @@ void moveTo(int pos)
 {
 	pos = abs(pos) - 1;
 
-	currentPoint.x = pointVector[pos].x;
-	currentPoint.y = pointVector[pos].y;
+	currentPoint.x = points[pos].x;
+	currentPoint.y = points[pos].y;
 }
 
 // B-Spline
 void lineTo(int pos) {
-	Point p = pointVector[pos - 1];
+	Point p = points[pos - 1];
 	glColor3d(0, 0, 0);
 	// I 12
 	if (pos <= 12) {
@@ -189,7 +189,7 @@ void draw() {
 		code[i] < 0 ? moveTo((code[i])) : lineTo((code[i]));
 	}
 
-	pointVector.clear();
+	points.clear();
 	code.clear();
 }
 
