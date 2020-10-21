@@ -27,8 +27,6 @@ void processSpecialKeys(int key, int x, int y);
 void rotate(bool direction);
 void display();
 
-int windowH, windowW;
-
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -140,15 +138,15 @@ void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 
-	glPushMatrix(); //------------------ Encapsulate Rotation BEGIN --------------
+	glPushMatrix(); //------------ Encapsulate Rotation BEGIN -----------
 	glRotatef(angle * -1, 0.0, 0.0, 1.0);
 	draw("pointsI.txt");
-	glPopMatrix(); //------------------ Encapsulate Rotation END --------------
+	glPopMatrix(); //------------ Encapsulate Rotation END ----------
 
-	glPushMatrix(); //------------------ Encapsulate Rotation BEGIN --------------	
+	glPushMatrix(); //------------ Encapsulate Rotation BEGIN ----------	
 	glRotatef(angle, 0.0, 0.0, 1.0);
 	draw("pointsL.txt");
-	glPopMatrix(); //------------------ Encapsulate Rotation END --------------
+	glPopMatrix(); //------------ Encapsulate Rotation END ----------
 
 	glutSwapBuffers();
 }

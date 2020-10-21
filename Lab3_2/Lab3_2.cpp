@@ -25,8 +25,6 @@ void display();
 void processNormalKeys(unsigned char key, int x, int y);
 void processSpecialKeys(int key, int x, int y);
 
-int windowH, windowW;
-
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
