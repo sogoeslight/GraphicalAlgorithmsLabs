@@ -1,9 +1,9 @@
 #include <Windows.h>
-#include <GL/glut.h>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <GL/glut.h>
 
 using namespace std;
 
@@ -58,26 +58,14 @@ void reshape(int w, int h)
 
 void processNormalKeys(unsigned char key, int x, int y)
 {
-	if (key == 27) // Esc
-		exit(0);
-	if (key == 65) // 'A'
-	{
-		glMatrixMode(GL_MODELVIEW);
-		glTranslated(20, 20, 0);
-		display();
-	}
-	if (key == 45) // '-'
-	{
-		glMatrixMode(GL_MODELVIEW);
-		glScalef(0.8, 0.8, 0.0);
-		display();
-	}
-	if (key == 43) // '+'
-	{
-		glMatrixMode(GL_MODELVIEW);
-		glScalef(1.2, 1.2, 0.0);
-		display();
-	}
+	glMatrixMode(GL_MODELVIEW);
+
+	if (key == 27) exit(0); // Esc
+	if (key == 65) glTranslated(20, 20, 0); // 'A'
+	if (key == 45) glScalef(0.8, 0.8, 0.0); // '-'
+	if (key == 43) glScalef(1.2, 1.2, 0.0); // '+'
+
+	display();
 }
 
 // small workaround for easier rotation
