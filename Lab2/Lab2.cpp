@@ -103,12 +103,14 @@ void draw(string fileName) {
 	code.clear();
 }
 
-GLdouble X = -1;
-GLdouble Y = 1;
-GLdouble Z = 0;
-GLdouble D = 0;
+
 
 void display() {
+	GLdouble X = -1;
+	GLdouble Y = 1;
+	GLdouble Z = 0;
+	GLdouble D = 0;
+
 	glClearColor(1, 1, 1, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 

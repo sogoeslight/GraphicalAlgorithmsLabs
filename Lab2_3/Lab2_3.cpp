@@ -28,13 +28,14 @@ void reshape(int w, int h) {
 	glLoadIdentity();
 }
 
-GLfloat arr1[4][3] = { { 50, 58, 0 }, { 60, 70, 0 }, { 70, 50, 0 }, { 50, 30, 0 } };
-GLfloat arr2[4][3] = { { 50, 58, 0 }, { 40, 70, 0 }, { 30, 50, 0 }, { 50, 30, 0 } };
+GLfloat arr1[4][3] = { { 50, 58, 0 }, { 40, 70, 0 }, { 30, 50, 0 }, { 50, 30, 0 } };
+GLfloat arr2[4][3] = { { 50, 58, 0 }, { 60, 70, 0 }, { 70, 50, 0 }, { 50, 30, 0 } };
 
 // B-Spline
 void draw() {
 	GLfloat node[8] = { 0, 0, 0, 0, 1, 1, 1, 1 };
 	GLUnurbs* nurbs = gluNewNurbsRenderer();
+
 	gluBeginCurve(nurbs);
 	gluNurbsCurve(nurbs, 8, node, 3, &arr1[0][0], 4, GL_MAP1_VERTEX_3);
 	gluEndCurve(nurbs);
@@ -47,6 +48,8 @@ void draw() {
 void display() {
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
+
 	draw();
+
 	glutSwapBuffers();
 }

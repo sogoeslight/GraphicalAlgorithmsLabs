@@ -25,7 +25,6 @@ void display();
 void processNormalKeys(unsigned char key, int x, int y);
 void processSpecialKeys(int key, int x, int y);
 void rotate(bool direction);
-void display();
 
 int main(int argc, char* argv[])
 {

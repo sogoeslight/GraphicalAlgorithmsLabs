@@ -1,9 +1,7 @@
-#include<math.h>
+#include <math.h>
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <vector>
-
 #include "GL\glut.h"
 
 using namespace std;
@@ -20,12 +18,10 @@ Point currentPoint;
 
 void reshape(int w, int h);
 void display();
-void readFromFile(string path);
+void readFromFile(string fileName);
+void draw(string fileName);
 
 int main(int argc, char* argv[]) {
-	readFromFile("i.txt");
-	readFromFile("l.txt");
-
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowSize(800, 600);
@@ -184,7 +180,9 @@ void lineTo(int pos) {
 	currentPoint.y = p.y;
 }
 
-void draw() {
+void draw(string fileName) {
+	readFromFile(fileName);
+
 	for (int i = 0; i != code.size(); i++) {
 		code[i] < 0 ? moveTo((code[i])) : lineTo((code[i]));
 	}
@@ -197,7 +195,8 @@ void display() {
 	glClearColor(1, 1, 1, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	draw();
+	draw("pointsI.txt");
+	draw("pointsL.txt");
 
 	glutSwapBuffers();
 }
