@@ -46,10 +46,12 @@ void reshape(int w, int h) {
 void readFromFile(string path)
 {
 	fstream f(path, ios::in);
-	if (f.is_open()) {
-		if (points.empty()) {
-			int pointNumber;
+	if (f.is_open()) 
+	{
+		if (points.empty()) 
+		{
 			Point p;
+			int pointNumber;
 			f >> pointNumber;
 			for (int i = 0; i < pointNumber; i++)
 			{
@@ -57,15 +59,16 @@ void readFromFile(string path)
 				points.push_back(p);
 			}
 
-			int movesNumber, m;
-			f >> movesNumber;
-			for (int i = 0; i < movesNumber; i++)
+			int move, amountOfMoves;
+			f >> amountOfMoves;
+			for (int i = 0; i < amountOfMoves; i++)
 			{
-				f >> m;
-				code.push_back(m);
+				f >> move;
+				code.push_back(move);
 			}
 		}
-		else {
+		else 
+		{
 			int shiftForDots = points.size();
 			int pointNumber;
 			Point p;
@@ -81,11 +84,19 @@ void readFromFile(string path)
 			for (int i = 0; i < movesNumber; i++)
 			{
 				f >> m;
-				m < 0 ? m -= shiftForDots : m += shiftForDots;
+				if (m < 0)
+				{
+					m -= shiftForDots;
+				}
+				else
+				{
+					m += shiftForDots;
+				}
 				code.push_back(m);
 			}
 		}
 	}
+
 	f.close();
 }
 

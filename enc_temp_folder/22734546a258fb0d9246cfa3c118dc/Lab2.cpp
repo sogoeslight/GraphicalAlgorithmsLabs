@@ -108,7 +108,7 @@ void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glEnable(GL_CLIP_PLANE0);
-	//                   x, y, z, d
+
 	GLdouble arr[4] = { -1, 1, 0, 0 };
 	glClipPlane(GL_CLIP_PLANE0, arr);
 	glColor3d(0, 0, 0);
