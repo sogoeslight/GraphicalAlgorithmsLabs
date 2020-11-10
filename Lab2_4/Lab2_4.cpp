@@ -46,6 +46,7 @@ void reshape(int w, int h) {
 void readFromFile(string path)
 {
 	fstream f(path, ios::in);
+
 	if (f.is_open()) 
 	{
 		if (points.empty()) 
